@@ -1,0 +1,29 @@
+{
+  "name": "student-management-api",
+  "version": "1.0.0",
+  "description": "Beginner-friendly EduTrack REST API backend using Node.js, Express.js, MongoDB, and Mongoose.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose",
+    "rest-api",
+    "student-management"
+  ],
+  "author": "EduTrack",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

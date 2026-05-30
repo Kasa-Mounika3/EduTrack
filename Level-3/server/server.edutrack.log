@@ -1,0 +1,81 @@
+
+> edutrack-server@1.0.0 start
+> node src/server.js
+
+MongoDB connected: ac-utcwqb1-shard-00-00.zxmbwb1.mongodb.net
+Server running in development mode on port 5000
+GraphQL endpoint ready at http://localhost:5000/graphql
+[0mGET / [32m200[0m 1.874 ms - 56[0m
+[0mGET / [32m200[0m 0.659 ms - 56[0m
+[0mGET /favicon.ico [33m404[0m 1.200 ms - 1412[0m
+[0mGET /api/users [32m200[0m 692.371 ms - 197[0m
+[0mGET /api/notifications [36m304[0m 733.530 ms - -[0m
+[0mGET /api/users [36m304[0m 123.852 ms - -[0m
+[0mGET /api/notifications [36m304[0m 161.669 ms - -[0m
+[0mGET /api/auth/profile [36m304[0m 1067.815 ms - -[0m
+[0mGET /api/auth/profile [36m304[0m 70.447 ms - -[0m
+[0mGET /api/courses?limit=5 [36m304[0m 148.238 ms - -[0m
+[0mGET /api/students?limit=5 [36m304[0m 205.881 ms - -[0m
+[0mGET /api/courses?limit=5 [36m304[0m 147.720 ms - -[0m
+[0mGET /api/students?limit=5 [36m304[0m 219.815 ms - -[0m
+[0mGET /api/courses?limit=50 [36m304[0m 121.506 ms - -[0m
+[0mGET /api/students?search=&course=&page=1&limit=8 [32m200[0m 197.345 ms - 691[0m
+[0mGET /api/courses?limit=50 [36m304[0m 141.298 ms - -[0m
+[0mGET /api/students?search=&course=&page=1&limit=8 [36m304[0m 205.739 ms - -[0m
+[0mGET /api/courses?search=&page=1&limit=8 [36m304[0m 120.715 ms - -[0m
+[0mGET /api/courses?search=&page=1&limit=8 [36m304[0m 132.417 ms - -[0m
+[0mPOST /graphql [32m200[0m 229.169 ms - 312[0m
+[0mGET /api/users [32m200[0m 111.046 ms - 223[0m
+[0mGET /api/users [36m304[0m 127.434 ms - -[0m
+[0mGET /api/courses?limit=5 [36m304[0m 137.140 ms - -[0m
+[0mGET /api/students?limit=5 [36m304[0m 200.768 ms - -[0m
+[0mGET /api/courses?limit=5 [36m304[0m 130.773 ms - -[0m
+[0mGET /api/students?limit=5 [36m304[0m 214.949 ms - -[0m
+[0mPOST /api/auth/login [33m401[0m 61.659 ms - 396[0m
+[0mPOST /api/auth/register [32m201[0m 439.423 ms - 428[0m
+[0mGET /api/auth/profile [32m200[0m 52.778 ms - 220[0m
+[0mGET /api/courses?limit=5 [36m304[0m 126.718 ms - -[0m
+[0mGET /api/notifications [32m200[0m 198.388 ms - 437[0m
+[0mGET /api/courses?limit=5 [36m304[0m 114.069 ms - -[0m
+[0mGET /api/users [32m200[0m 606.021 ms - 325[0m
+[0mGET /api/students?limit=5 [32m200[0m 688.410 ms - 121[0m
+[0mGET /api/students?limit=5 [36m304[0m 131.755 ms - -[0m
+[0mPATCH /api/notifications/read [32m200[0m 160.480 ms - 81[0m
+[0mGET /api/courses?limit=50 [36m304[0m 126.902 ms - -[0m
+[0mGET /api/students?search=&course=&page=1&limit=8 [32m200[0m 139.595 ms - 121[0m
+[0mGET /api/courses?limit=50 [36m304[0m 123.717 ms - -[0m
+[0mGET /api/students?search=&course=&page=1&limit=8 [36m304[0m 152.545 ms - -[0m
+[0mGET /api/students?limit=5 [36m304[0m 1518.550 ms - -[0m
+[0mGET /api/courses?limit=5 [36m304[0m 1508.682 ms - -[0m
+[0mGET /api/students?limit=5 [36m304[0m 188.383 ms - -[0m
+[0mGET /api/courses?limit=5 [36m304[0m 174.307 ms - -[0m
+[0mGET /api/students?search=&course=&page=1&limit=8 [36m304[0m 146.336 ms - -[0m
+[0mGET /api/courses?limit=50 [36m304[0m 138.520 ms - -[0m
+[0mGET /api/courses?limit=50 [36m304[0m 120.197 ms - -[0m
+[0mGET /api/students?search=&course=&page=1&limit=8 [36m304[0m 133.663 ms - -[0m
+[0mGET /api/courses?search=&page=1&limit=8 [36m304[0m 144.613 ms - -[0m
+[0mGET /api/courses?search=&page=1&limit=8 [36m304[0m 151.532 ms - -[0m
+[0mGET /api/students?search=&course=&page=1&limit=8 [36m304[0m 164.614 ms - -[0m
+[0mGET /api/courses?limit=50 [36m304[0m 161.614 ms - -[0m
+[0mGET /api/students?search=&course=&page=1&limit=8 [36m304[0m 143.302 ms - -[0m
+[0mGET /api/courses?limit=50 [36m304[0m 134.711 ms - -[0m
+[0mGET /api/courses?search=&page=1&limit=8 [36m304[0m 143.318 ms - -[0m
+[0mGET /api/courses?search=&page=1&limit=8 [36m304[0m 154.904 ms - -[0m
+[0mPOST /graphql [32m200[0m 152.669 ms - 28[0m
+[0mGET /api/courses?search=&page=1&limit=8 [36m304[0m 148.058 ms - -[0m
+[0mGET /api/courses?search=&page=1&limit=8 [36m304[0m 137.030 ms - -[0m
+[0mPOST /graphql [32m200[0m 156.389 ms - 28[0m
+[0mGET /api/users [36m304[0m 134.360 ms - -[0m
+[0mGET /api/users [36m304[0m 137.520 ms - -[0m
+[0mGET /api/messages?user=6a17fd94ec0afa4620d563c9 [32m200[0m 154.787 ms - 80[0m
+[0mPOST /graphql [32m200[0m 152.409 ms - 28[0m
+[0mPOST /graphql [32m200[0m 152.259 ms - 28[0m
+[0mGET /api/students?search=&course=&page=1&limit=8 [36m304[0m 145.524 ms - -[0m
+[0mGET /api/courses?limit=50 [36m304[0m 162.143 ms - -[0m
+[0mGET /api/students?search=&course=&page=1&limit=8 [36m304[0m 127.515 ms - -[0m
+[0mGET /api/courses?limit=50 [36m304[0m 134.729 ms - -[0m
+[0mGET /api/students?search=&course=6a17ff25ec0afa4620d5648f&page=1&limit=8 [32m200[0m 147.744 ms - 121[0m
+[0mGET /api/courses?limit=5 [36m304[0m 142.107 ms - -[0m
+[0mGET /api/students?limit=5 [36m304[0m 152.978 ms - -[0m
+[0mGET /api/students?limit=5 [36m304[0m 146.091 ms - -[0m
+[0mGET /api/courses?limit=5 [36m304[0m 155.481 ms - -[0m

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduTrack</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="assets/logo.png" alt="EduTrack Logo" style="width: 38px; height: 38px; object-fit: contain; border-radius: 6px;" />
+        <div>
+          <h1 style="margin: 0; font-size: 1.5rem; line-height: 1.2;">EduTrack</h1>
+          <small style="color: #657286; font-size: 0.75rem; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; display: block; margin-top: 2px;">Smart Student Management System</small>
+        </div>
+      </div>
+      <div class="api-status" id="apiStatus" aria-live="polite">
+        <span class="status-dot"></span>
+        <span>Checking API</span>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="form-panel" aria-labelledby="formTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Student Form</p>
+            <h2 id="formTitle">Add Student</h2>
+          </div>
+          <button class="ghost-button hidden" id="cancelEditButton" type="button">
+            Cancel Edit
+          </button>
+        </div>
+
+        <form id="studentForm" novalidate>
+          <input type="hidden" id="studentId" />
+
+          <div class="form-group">
+            <label for="profilePhoto">Profile Photo</label>
+            <input id="profilePhoto" name="profilePhoto" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="studentCode">Student ID</label>
+              <input id="studentCode" name="studentCode" type="text" placeholder="EDU-1001" />
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender">
+                <option value="">Select gender</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Non-binary">Non-binary</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Enter full name" required />
+            <small class="field-error" id="nameError"></small>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input id="firstName" name="firstName" type="text" placeholder="First name" />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input id="lastName" name="lastName" type="text" placeholder="Last name" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input id="dateOfBirth" name="dateOfBirth" type="date" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="student@example.com" required />
+            <small class="field-error" id="emailError"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="course">Course</label>
+            <input id="course" name="course" type="text" placeholder="MERN Stack" required />
+            <small class="field-error" id="courseError"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input id="age" name="age" type="number" min="1" placeholder="21" />
+            <small class="field-error" id="ageError"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" />
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input id="address" name="address" type="text" placeholder="Street address" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City</label>
+              <input id="city" name="city" type="text" />
+            </div>
+            <div class="form-group">
+              <label for="state">State</label>
+              <input id="state" name="state" type="text" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input id="country" name="country" type="text" />
+            </div>
+            <div class="form-group">
+              <label for="department">Department</label>
+              <input id="department" name="department" type="text" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="year">Year</label>
+              <input id="year" name="year" type="text" placeholder="2nd Year" />
+            </div>
+            <div class="form-group">
+              <label for="semester">Semester</label>
+              <input id="semester" name="semester" type="text" placeholder="Semester 4" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="admissionDate">Admission Date</label>
+            <input id="admissionDate" name="admissionDate" type="date" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="parentName">Parent Name</label>
+              <input id="parentName" name="parentName" type="text" />
+            </div>
+            <div class="form-group">
+              <label for="parentRelationship">Relationship</label>
+              <input id="parentRelationship" name="parentRelationship" type="text" placeholder="Father, Mother, Guardian" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="parentPhone">Parent Phone Number</label>
+              <input id="parentPhone" name="parentPhone" type="tel" />
+            </div>
+            <div class="form-group">
+              <label for="parentEmail">Parent Email</label>
+              <input id="parentEmail" name="parentEmail" type="email" />
+            </div>
+          </div>
+
+          <button class="primary-button" id="submitButton" type="submit">
+            Save Student
+          </button>
+        </form>
+      </section>
+
+      <section class="students-panel" aria-labelledby="studentsTitle">
+        <div class="section-heading list-heading">
+          <div>
+            <p class="eyebrow">Directory</p>
+            <h2 id="studentsTitle">All Students</h2>
+          </div>
+          <div class="student-count" id="studentCount">0 students</div>
+        </div>
+
+        <div class="toolbar">
+          <label class="search-label" for="searchInput">Search students</label>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search by name, email, or course"
+            autocomplete="off"
+          />
+          <button class="secondary-button" id="refreshButton" type="button">
+            Refresh
+          </button>
+        </div>
+
+        <div class="alert hidden" id="messageBox" role="status" aria-live="polite"></div>
+
+        <div class="loading-state hidden" id="loadingState">
+          <span class="loader"></span>
+          <span>Loading students...</span>
+        </div>
+
+        <div class="empty-state hidden" id="emptyState">
+          <h3>No students found</h3>
+          <p>Add a student or adjust the search filter.</p>
+        </div>
+
+        <div class="table-wrap" id="tableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Age</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="studentsTableBody"></tbody>
+          </table>
+        </div>
+
+        <article class="profile-panel hidden" id="profilePanel" aria-live="polite"></article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
