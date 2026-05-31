@@ -39,7 +39,7 @@ const Login = () => {
         </div>
         <p className="eyebrow">Welcome back</p>
         <h1 style={{ marginTop: '8px' }}>Login</h1>
-        <p>Use your JWT account to access protected EduTrack routes.</p>
+        <p>Sign in to access your EduTrack account dashboard.</p>
         {error && <div className="alert error">{error}</div>}
         <div className="auth-form">
           <label>
