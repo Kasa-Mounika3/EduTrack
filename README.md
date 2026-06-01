@@ -1,62 +1,98 @@
-# EduTrack – Smart Student Management System
+# 🎓 EduTrack – Smart Student Management System
 
-EduTrack is a Student Management System built level-by-level from a basic REST API to a production-style MERN application with REST, GraphQL, Socket.io, JWT authentication, and MongoDB.
+EduTrack is an enterprise-ready, multi-level progressive academic platform designed to streamline operations for school administrators, teachers, parents, and students. The project is built sequentially across three distinct levels, scaling from a lightweight REST API foundation to a production-grade MERN SaaS application featuring JWT authentication, Apollo GraphQL integration, real-time Socket.io communication, and comprehensive analytics.
 
-## Project Structure
+---
 
-```txt
-Student-Management-System/
-|-- Level-1/
-|   |-- backend/
-|   |-- frontend/
-|   `-- README.md
-|-- Level-2/
-|   |-- client/
-|   |-- server/
-|   `-- README.md
-|-- Level-3/
-|   |-- client/
-|   |-- server/
-|   `-- README.md
-`-- README.md
+## 🌟 Architecture & Core Concept
+
+EduTrack is designed as a learning and deployment showcase. All three levels are built on a **single, shared database architecture**. They connect to the exact same MongoDB Atlas database (`edutrack`), allowing academic records, user accounts, and structures to persist and seamlessly evolve as you progress through each level.
+
+```
+                  ┌───────────────────────────────────────────────┐
+                  │          Shared MongoDB Atlas ("edutrack")     │
+                  └───────┬────────────────┬────────────────┬─────┘
+                          │                │                │
+                          ▼                ▼                ▼
+                     ┌─────────┐      ┌─────────┐      ┌─────────┐
+                     │ Level 1 │      │ Level 2 │      │ Level 3 │
+                     │ (REST)  │      │ (React/ │      │ (REST/  │
+                     │         │      │  JWT)   │      │GraphQL/ │
+                     │         │      │         │      │Sockets) │
+                     └─────────┘      └─────────┘      └─────────┘
 ```
 
-> Note: On this machine the Level 1 folder may still display as `level-1` if Windows is holding a file lock. It contains the same Level 1 project.
+---
 
-## Level Summary
-
-Level 1 - Basic:
-- Node.js and Express REST API
-- MongoDB and Mongoose Student model
-- CRUD endpoints for students
-- HTML, CSS, and JavaScript frontend using Fetch API
-
-Level 2 - Intermediate:
-- React frontend with React Router DOM
-- Axios API services
-- JWT authentication and bcrypt password hashing
-- Admin/student roles, protected routes, search, pagination, and course relationships
-
-Level 3 - Advanced:
-- Full MERN application
-- Existing REST APIs preserved
-- Apollo GraphQL API as an alternative API layer
-- Socket.io real-time notifications, announcements, messages, and dashboard updates
-- Apollo Client and Socket.io Client integrated into React
-
-## Final Level 3 URLs
+## 📁 Project Directory Structure
 
 ```txt
-Frontend: http://localhost:5173
-Backend:  http://localhost:5000
-GraphQL:  http://localhost:5000/graphql
-REST:     http://localhost:5000/api
+EduTrack/
+├── level-1/            # Level 1: Foundation (Admin Student CRUD)
+│   ├── backend/        # Node.js + Express + MongoDB Server
+│   ├── frontend/       # Vanilla HTML5 + CSS3 + Javascript (Fetch API)
+│   └── README.md       # Level 1 Documentation
+├── Level-2/            # Level 2: Intermediate (Multi-role Academic Portal)
+│   ├── server/         # Node.js + Express + JWT auth Server
+│   ├── client/         # React SPA + Vite + Tailwind CSS
+│   └── README.md       # Level 2 Documentation
+├── Level-3/            # Level 3: Advanced (Real-time MERN SaaS Application)
+│   ├── server/         # Express + Apollo GraphQL + Socket.io Server
+│   ├── client/         # React SPA + Apollo Client + Socket.io Client
+│   └── README.md       # Level 3 Documentation
+└── README.md           # Root Project Documentation (This File)
 ```
 
-## Run The Final App
+---
 
-Backend:
+## 🚀 Progressive Levels Overview
 
+### 🏛️ Level 1 – Foundation (REST CRUD API)
+* **Objective**: Build the core student database schema and basic endpoints.
+* **Scope**: Admin-only workspace with no authentication, no login credentials, and no role restrictions.
+* **Technology Stack**:
+  * **Backend**: Node.js, Express.js, MongoDB Atlas, Mongoose
+  * **Frontend**: Plain HTML5, Vanilla CSS3, Javascript (Fetch API)
+* **Features**: Add student, view students, edit student profiles, and delete student records using traditional REST APIs.
+
+### 🔐 Level 2 – Intermediate (React & JWT Auth)
+* **Objective**: Introduce dynamic user roles, robust security, and deep academic relationships.
+* **Scope**: Implements secure Login/Logout and maps permissions across 4 roles: Admin, Teacher, Student, and Parent.
+* **Technology Stack**:
+  * **Backend**: Node.js, Express.js, JWT, Bcrypt, MongoDB Atlas
+  * **Frontend**: React (Vite), React Router DOM, Axios, Context API, Tailwind CSS
+* **Features**: Dynamic dashboards, Admin management of academic models (Departments, Sections, Subjects), Teacher controls for marking attendance and grade sheets, Student views, Parent child-performance monitoring.
+
+### ⚡ Level 3 – Advanced (SaaS with GraphQL & Real-Time)
+* **Objective**: Scale Level 2 into a high-performance, real-time MERN application.
+* **Scope**: Combines robust REST endpoints with an Apollo GraphQL API layer and Socket.io for instantaneous updates.
+* **Technology Stack**:
+  * **Backend**: Node.js, Express.js, Apollo Server (GraphQL), Socket.io, JWT, Mongoose
+  * **Frontend**: React (Vite), Apollo Client, Socket.io Client, Tailwind CSS
+* **Features**: Live notifications/messages, interactive Add/Edit modals (removing browser prompts), dynamic and cascading department/section/subject dropdown lists, advanced dashboard analytics, profile photo uploads, and light/dark theme toggle.
+
+---
+
+## 🌐 Live Production Deployments
+
+The final advanced application is fully deployed and available online:
+
+* **🚀 Live Frontend App**: [https://edutrackf.onrender.com](https://edutrackf.onrender.com)
+* **🔌 Live API Server**: [https://edutrack-c38t.onrender.com](https://edutrack-c38t.onrender.com)
+* **📊 GraphQL Endpoint**: [https://edutrack-c38t.onrender.com/graphql](https://edutrack-c38t.onrender.com/graphql)
+* **🛠️ REST Endpoint**: [https://edutrack-c38t.onrender.com/api](https://edutrack-c38t.onrender.com/api)
+
+---
+
+## ⚙️ Quick Start Guide
+
+### Prerequisites
+- Node.js installed (v16+)
+- A MongoDB Atlas Cluster URL
+
+### Run Level 3 (Final App) Locally
+
+#### 1. Setup the Server
 ```bash
 cd Level-3/server
 copy .env.example .env
@@ -64,8 +100,17 @@ npm install
 npm run dev
 ```
 
-Frontend:
+Update the `Level-3/server/.env` file:
+```env
+PORT=5000
+NODE_ENV=development
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/edutrack
+JWT_SECRET=your_jwt_secret_key_here
+JWT_EXPIRES_IN=7d
+CLIENT_URL=http://localhost:5173
+```
 
+#### 2. Setup the Client
 ```bash
 cd Level-3/client
 copy .env.example .env
@@ -73,37 +118,22 @@ npm install
 npm run dev
 ```
 
-## Environment Variables
-
-Level 3 server `.env`:
-
-```env
-PORT=5000
-NODE_ENV=development
-MONGO_URI=mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/edutrack
-JWT_SECRET=replace_with_a_long_random_secret
-JWT_EXPIRES_IN=7d
-CLIENT_URL=http://localhost:5173
-```
-
-Level 3 client `.env`:
-
+Update the `Level-3/client/.env` file:
 ```env
 VITE_API_BASE_URL=http://localhost:5000/api
 ```
 
-## REST, GraphQL, And Socket.io Together
+Open your browser and navigate to `http://localhost:5173`.
 
-REST remains available under `/api/*` for internship proof and traditional CRUD testing.
+---
 
-GraphQL is available at `/graphql` and uses the same MongoDB models, JWT secret, and authentication rules as REST.
+## 🛠️ API Architecture & Shared Data
 
-Socket.io runs on the same backend server at `http://localhost:5000` and provides real-time notifications, announcements, messages, and dashboard updates.
+EduTrack provides high flexibility. The backend runs REST endpoints alongside the GraphQL endpoint seamlessly:
 
-## Deployment
+- **REST Endpoints**: Accessible at `/api/*` for standard CRUD actions and external tool testing.
+- **GraphQL Endpoint**: Accessible at `/graphql` using the exact same database models, JWT protection, and validation rules.
+- **Real-Time Gateway**: Powered by Socket.io, broadcasting state changes (announcements, academic notifications, or message alerts) instantly.
 
-Backend can be deployed to Render from `Level-3/server`.
-
-Frontend can be deployed to Vercel from `Level-3/client`.
-
-Set `CLIENT_URL` on the backend to your Vercel URL, and set `VITE_API_BASE_URL` on the frontend to your Render API URL ending in `/api`.
+> [!TIP]
+> Ensure all local client setups use `http://localhost:5000/api` as the `VITE_API_BASE_URL` and production environments use `https://edutrack-c38t.onrender.com/api`.

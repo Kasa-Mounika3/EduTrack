@@ -1,79 +1,89 @@
-# EduTrack
+# 🎓 EduTrack – Level 2: Multi-Role Academic Portal
 
-Smart Student Management System.
+Welcome to **Level 2** of EduTrack! This level transforms the foundational CRUD database into a robust multi-role academic portal. It introduces React, secure login mechanisms, role-based authorization, and deep relational MongoDB schemas.
 
-EduTrack provides a multi-role academic management system with React, JWT authentication, role-based authorization, MongoDB relationships, academic progress tracking, and role-specific dashboards.
+---
 
-## Structure
+## 🏛️ Architecture & Role-Based Authorization
+
+Level 2 splits the project into a separate client-server structure. A modern React SPA manages the frontend view routing using React Router DOM, communicating securely with a JWT-protected Express API server using Axios.
+
+### The Four Roles & Workflows
+
+| Role | Key Permissions & Operations |
+| :--- | :--- |
+| **👑 Admin** | Create Courses, Departments, Sections, and Subjects. Create Students, Teachers, and Parents (which auto-generates their login credentials). Bind parents and teachers to students. Broadcast school announcements. |
+| **👨‍🏫 Teacher** | View assigned sections and subjects. Mark student attendance (Present, Absent, Late) on an interactive sheet. Manage grade sheets (input marks, grades, and remarks). Broadcast class announcements. |
+| **👶 Student** | Access read-only analytics. Track subject-wise attendance percentages, review published marks/grades, view current course list, and read announcements. |
+| **👪 Parent** | Monitor child's academic performance. View child's profile, attendance charts, grade sheets, and school announcements. Includes a child selector for parents with multiple children. |
+
+---
+
+## 📁 Level 2 File Structure
 
 ```txt
 Level-2/
-|-- client/
-|   |-- src/
-|   |   |-- components/
-|   |   |-- context/
-|   |   |-- hooks/
-|   |   |-- pages/
-|   |   |-- services/
-|   |   `-- styles/
-|   |-- .env.example
-|   `-- package.json
-|-- server/
-|   |-- config/
-|   |-- controllers/
-|   |-- middleware/
-|   |-- models/
-|   |-- routes/
-|   |-- utils/
-|   |-- app.js
-|   |-- server.js
-|   |-- .env.example
-|   `-- package.json
-`-- README.md
+├── client/
+│   ├── src/
+│   │   ├── components/  # Layout, Navbar, ProtectedRoutes, Shared UI
+│   │   ├── context/     # AuthContext and state providers
+│   │   ├── hooks/       # Custom React state hooks
+│   │   ├── pages/       # Login, Dashboard, Students, Teachers, Parents, Courses, etc.
+│   │   ├── services/    # Axios API client and route requests
+│   │   └── styles/      # Tailwind CSS config and stylesheets
+│   ├── .env.example     # Client configuration environment variables
+│   └── package.json     # React application dependencies
+└── server/
+    ├── config/          # Database and authentication configs
+    ├── controllers/     # Request handlers for Auth, Academic, Student, Teacher, Parent
+    ├── middleware/      # JWT verification, Role authorization, Error handler
+    ├── models/          # Relational Schemas (Course, Department, Section, Subject, User, etc.)
+    ├── routes/          # REST Endpoint Routers
+    ├── utils/           # Helper scripts (Token generators)
+    ├── .env.example     # Server configuration environment variables
+    └── package.json     # Server dependencies
 ```
 
-## Features
+---
 
-- React.js frontend with functional components
-- React Router DOM routing
-- Axios API client
-- Context API for auth, students, and courses
-- Register and login
-- JWT authentication
-- bcrypt password hashing
-- Protected routes
-- Admin, teacher, student, and parent roles
-- MongoDB/Mongoose relationships
-- Automatic student/teacher/parent login account creation by admin
-- Attendance, marks, course progress, announcements, and parent monitoring
-- Validation, indexing, search filtering, and pagination
-- Responsive dashboard UI
+## 🔒 Security & Data Relationships
 
-## Roles
+* **Authentication**: Password encryption using `bcrypt` and session-based request security using JSON Web Tokens (JWT).
+* **Shared Database**: Connects to the same `edutrack` MongoDB Atlas cluster. Extends student data from Level 1 with new user roles, courses, attendance sheets, assessment collections, and announcements.
+* **Relations**: Models are deeply interlinked via Mongoose `ObjectId` references. Students link to courses/parents; teachers link to sections/subjects.
 
-Admin:
-- Add students, teachers, and parents
-- Create courses
-- Assign teachers and parents to students
-- Manage academic records
-- Send announcements
+---
 
-Teacher:
-- View assigned students
-- Update attendance
-- Update grades and course progress
-- Send announcements
+## 🔌 Primary API Reference
 
-Student:
-- Login securely
-- View attendance, marks, grade, course progress, courses, notifications, and profile
+### 🔐 Authentication & Session
+* `POST /api/auth/register` – Create first Admin account.
+* `POST /api/auth/login` – Authenticate user and sign JWT.
+* `GET /api/auth/profile` – Fetch current user profile.
 
-Parent:
-- Login securely
-- View child attendance, grades, course progress, and announcements
+### 👑 Admin & Management
+* `GET/POST /api/students` – Manage student profiles (auto-creates User logins).
+* `GET/POST /api/teachers` – Manage teacher directories (auto-creates User logins).
+* `GET/POST /api/parents` – Manage parent accounts (auto-creates User logins).
+* `GET/POST /api/courses` – Manage school courses.
 
-## Run Backend
+### 📂 Academic Structure
+* `GET /api/academic` – Retrieve all academic years, departments, sections, and subjects.
+* `POST /api/academic/department` – Create a new academic department.
+* `POST /api/academic/section` – Create a section (under a department & course).
+* `POST /api/academic/subject` – Create a subject (assigning code, course, and teacher).
 
+### 📝 Academics & Communications
+* `PATCH /api/students/:id/attendance` – Update student attendance (Teacher).
+* `PATCH /api/students/:id/grades` – Update student assessment scores (Teacher).
+* `GET/POST /api/announcements` – Create and retrieve system announcements.
+
+---
+
+## ⚙️ Setup & Local Execution
+
+### 1. Start the Server
+Navigate to the server directory, install node modules, configure environment, and run:
 ```bash
 cd Level-2/server
 copy .env.example .env
@@ -81,8 +91,18 @@ npm install
 npm run dev
 ```
 
-## Run Frontend
+#### Server Environment (`server/.env`):
+```env
+PORT=5000
+NODE_ENV=development
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/edutrack
+JWT_SECRET=your_long_secure_secret_key_here
+JWT_EXPIRES_IN=7d
+CLIENT_URL=http://localhost:5173
+```
 
+### 2. Start the Client App
+Navigate to the client directory, install packages, configure the API endpoint, and run:
 ```bash
 cd Level-2/client
 copy .env.example .env
@@ -90,82 +110,29 @@ npm install
 npm run dev
 ```
 
-## URLs
-
-```txt
-Frontend: http://localhost:5173
-Backend:  http://localhost:5000
-```
-
-## Server Environment Variables
-
-```env
-PORT=5000
-MONGO_URI=mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/edutrack
-JWT_SECRET=replace_with_a_long_random_secret
-JWT_EXPIRES_IN=7d
-CLIENT_URL=http://localhost:5173
-```
-
-EduTrack connects to the same `edutrack` database as EduTrack and extends those collections with authentication and academic structure.
-
-## Client Environment Variables
-
+#### Client Environment (`client/.env`):
 ```env
 VITE_API_BASE_URL=http://localhost:5000/api
 ```
 
-## API Testing Guide
+Open your browser and navigate to the application dashboard at `http://localhost:5173`.
 
-1. Register an admin user.
-2. Login and copy the JWT token.
-3. Create courses.
-4. Create students using course ObjectIds. The backend automatically creates student login credentials.
-5. Create teachers and assign students.
-6. Create parents and connect them to child students.
-7. Login as teacher, update attendance and grades.
-8. Login as student or parent and verify dashboard access is role-limited.
+---
 
-## Main API Routes
+## 🧪 Detailed Verification Walkthrough
 
-```txt
-POST /api/auth/register
-POST /api/auth/login
-GET  /api/auth/profile
-
-GET  /api/dashboard
-
-GET  /api/students
-POST /api/students
-GET  /api/students/:id
-PUT  /api/students/:id
-PATCH /api/students/:id/attendance
-PATCH /api/students/:id/grades
-DELETE /api/students/:id
-
-GET  /api/teachers
-POST /api/teachers
-
-GET  /api/parents
-POST /api/parents
-
-GET  /api/courses
-POST /api/courses
-
-GET  /api/announcements
-POST /api/announcements
-```
-
-## Deployment Guide
-
-Backend:
-- Deploy `Level-2/server` to Render.
-- Build command: `npm install`
-- Start command: `npm start`
-- Add server environment variables.
-
-Frontend:
-- Deploy `Level-2/client` to Vercel.
-- Build command: `npm run build`
-- Output directory: `dist`
-- Add `VITE_API_BASE_URL=https://YOUR_RENDER_URL/api`.
+1. **Admin Initial Registration**: Load `http://localhost:5173/register`, create the first Admin user, and log in.
+2. **Academic Structure Creation**:
+   * Create a **Course** (e.g., Computer Science).
+   * Create a **Department** (e.g., Department of Engineering).
+   * Create a **Section** (e.g., CS-2026).
+   * Create a **Subject** (e.g., Database Systems).
+3. **Account Provisioning**:
+   * Add a **Teacher** and assign them to the Section/Subject.
+   * Add a **Student** and associate them with the Course/Section.
+   * Add a **Parent** and select their Child student.
+4. **Teacher Operations**: Log out of Admin, log in as the newly created Teacher:
+   * View the student roster.
+   * Open **Attendance** and mark students Present/Absent.
+   * Open **Marks** and record assessment grades.
+5. **Student & Parent Dashboard Audit**: Log in as Student or Parent and verify read-only grids show the attendance percentages, marks, and announcements.

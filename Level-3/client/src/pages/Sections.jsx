@@ -41,7 +41,7 @@ const Sections = () => {
 
   // Premium filtering: only show departments belonging to the selected course
   const filteredDepartments = useMemo(() => {
-    if (!form.course) return [];
+    if (!form.course) return departments; // show all when no course selected
     return departments.filter(d => d.course?._id === form.course || d.course === form.course);
   }, [form.course, departments]);
 
@@ -131,11 +131,17 @@ const Sections = () => {
           </label>
           <label className="label">
             Department Link
-            <select required disabled={!form.course} value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value })}>
-              <option value="">Select department</option>
-              {filteredDepartments.map((dept) => (
-                <option key={dept._id} value={dept._id}>{dept.departmentName} ({dept.departmentCode})</option>
-              ))}
+            <select disabled={!form.course} value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value })}>
+              {filteredDepartments.length === 0 ? (
+                <option value="">Create a department first</option>
+              ) : (
+                <>
+                  <option value="">Select department</option>
+                  {filteredDepartments.map((dept) => (
+                    <option key={dept._id} value={dept._id}>{dept.departmentName} ({dept.departmentCode})</option>
+                  ))}
+                </>
+              )}
             </select>
           </label>
           <button className="btn-primary w-fit" disabled={saving}>{saving ? 'Saving...' : 'Add Section'}</button>

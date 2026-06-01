@@ -159,7 +159,6 @@ const Profile = () => {
         <div>
           <p className="eyebrow">Account</p>
           <h1>My Profile</h1>
-          <p>Authenticated profile management with Level-3 analytics added to the Level-2 layout.</p>
         </div>
       </div>
 

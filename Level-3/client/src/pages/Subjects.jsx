@@ -47,16 +47,17 @@ const Subjects = () => {
 
   // Filters for dynamic cascading selects
   const filteredDepartments = useMemo(() => {
-    if (!form.course) return [];
+    if (!form.course) return departments; // show all when no course selected
     return departments.filter(d => d.course?._id === form.course || d.course === form.course);
   }, [form.course, departments]);
 
   const filteredSections = useMemo(() => {
-    if (!form.course || !form.department || !form.year) return [];
+    // require at least department selected; year optional
+    if (!form.department) return sections;
     return sections.filter(s => {
-      const isCourseMatch = s.course?._id === form.course || s.course === form.course;
+      const isCourseMatch = !form.course || s.course?._id === form.course || s.course === form.course;
       const isDeptMatch = s.department?._id === form.department || s.department === form.department;
-      const isYearMatch = s.year === form.year;
+      const isYearMatch = !form.year || s.year === form.year;
       return isCourseMatch && isDeptMatch && isYearMatch;
     });
   }, [form.course, form.department, form.year, sections]);
@@ -157,11 +158,17 @@ const Subjects = () => {
             </label>
             <label className="label">
               Department Link
-              <select required disabled={!form.course} value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value, section: '' })}>
-                <option value="">Select department</option>
-                {filteredDepartments.map((dept) => (
-                  <option key={dept._id} value={dept._id}>{dept.departmentName}</option>
-                ))}
+              <select value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value, section: '' })}>
+                {filteredDepartments.length === 0 ? (
+                  <option value="">Create a department first</option>
+                ) : (
+                  <>
+                    <option value="">Select department</option>
+                    {filteredDepartments.map((dept) => (
+                      <option key={dept._id} value={dept._id}>{dept.departmentName}</option>
+                    ))}
+                  </>
+                )}
               </select>
             </label>
             <label className="label">
@@ -177,21 +184,37 @@ const Subjects = () => {
 
           <div className="grid gap-4 md:grid-cols-2">
             <label className="label">
-              Class Section Link
-              <select required disabled={!form.year || !form.department} value={form.section} onChange={(e) => setForm({ ...form, section: e.target.value })}>
-                <option value="">Select class section</option>
-                {filteredSections.map((sec) => (
-                  <option key={sec._id} value={sec._id}>Section {sec.sectionName}</option>
-                ))}
+              Class Section
+              <select value={form.section} onChange={(e) => setForm({ ...form, section: e.target.value })}>
+                {filteredSections.length === 0 ? (
+                  <option value="">Create a section first</option>
+                ) : (
+                  <>
+                    <option value="">Select class section</option>
+                    {filteredSections.map((sec) => (
+                      <option key={sec._id} value={sec._id}>
+                        {sec.year} – Section {sec.sectionName}
+                      </option>
+                    ))}
+                  </>
+                )}
               </select>
             </label>
             <label className="label">
               Assign Teacher
-              <select required value={form.teacher} onChange={(e) => setForm({ ...form, teacher: e.target.value })}>
-                <option value="">Select teacher to assign</option>
-                {teachers.map((teach) => (
-                  <option key={teach._id} value={teach._id}>{teach.name || teach.teacherName} ({teach.email})</option>
-                ))}
+              <select value={form.teacher} onChange={(e) => setForm({ ...form, teacher: e.target.value })}>
+                {teachers.length === 0 ? (
+                  <option value="">Create a teacher first</option>
+                ) : (
+                  <>
+                    <option value="">Select teacher to assign</option>
+                    {teachers.map((teach) => (
+                      <option key={teach._id} value={teach._id}>
+                        {teach.name || teach.teacherName} ({teach.email})
+                      </option>
+                    ))}
+                  </>
+                )}
               </select>
             </label>
           </div>

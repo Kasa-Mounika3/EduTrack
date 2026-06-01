@@ -1,94 +1,112 @@
-# EduTrack
+# 🎓 EduTrack – Level 3: Real-Time MERN SaaS App (Final Build)
 
-Smart Student Management System.
+Welcome to the **Level 3** (Final Advanced Level) of EduTrack! This module takes the multi-role layout established in Level 2 and scales it into a production-ready, highly interactive MERN SaaS application. It introduces real-time WebSockets, Apollo GraphQL API services, and a completely polished user interface with modal forms and cascading selectors.
 
-EduTrack is a production-style academic platform for school admins, teachers, parents, and students. It includes a polished React dashboard, student records, course management, notifications, messages, reports, secure sign in, and real-time updates.
+---
 
-## Run Locally
+## 🚀 Live Production URL Directory
 
-Server:
+The application is deployed across high-performance containers and static networks:
 
-```bash
-cd C:\Users\kasas\OneDrive\Desktop\SMS\Level-3\server
-npm install
-npm start
+* **🚀 Deployed Frontend (SPA)**: [https://edutrackf.onrender.com](https://edutrackf.onrender.com)
+* **🔌 Deployed Backend API**: [https://edutrack-c38t.onrender.com](https://edutrack-c38t.onrender.com)
+* **📊 Deployed GraphQL Server**: [https://edutrack-c38t.onrender.com/graphql](https://edutrack-c38t.onrender.com/graphql)
+* **🛠️ Deployed REST base**: [https://edutrack-c38t.onrender.com/api](https://edutrack-c38t.onrender.com/api)
+
+---
+
+## 🌟 Advanced Level 3 Enhancements
+
+### 1. Dual API Capability
+The server exposes a **REST API** under `/api/*` for compatibility and standard HTTP CRUD validation, alongside a high-performance **Apollo GraphQL API** under `/graphql` resolving schemas for students, courses, assignments, and teachers.
+
+### 2. Real-Time Socket.io Gateway
+A robust WebSocket layer provides instant system synchronization:
+- **Instant Messaging**: Seamless school-wide user chat with real-time delivery.
+- **Dynamic Announcements**: System broadcasts appear instantly across active user dashboards.
+- **Smart Notification Indicators**: Dynamic, unread badges that increment without requiring page reloads.
+
+### 3. Refined UX & Form Modals (Zero Alert/Prompt Boxes)
+All old browser-native `alert()` or `prompt()` dialogues have been completely removed and replaced with a modern component system:
+- **Add & Edit Teacher Modals**: Proper React-stateful modal dialogs that fully support uploading profile photos, adding multiple sections, selecting departments, and inputting fields (experience, phone, etc.).
+- **Cascading Dropdowns**: All forms dynamically fetch Departments, Sections, and Subjects from the backend in real-time. Dropdowns populate cascading data immediately (e.g. creating a department updates the department selector dynamically across subjects and teachers).
+- **Graceful States**: Elegant skeleton loaders, empty-state placeholders, smooth hover actions, and toast success indicators.
+
+---
+
+## 📁 Level 3 File Structure
+
+```txt
+Level-3/
+├── client/              # React SPA (Vite + Tailwind CSS)
+│   ├── src/
+│   │   ├── components/  # Layout, Modals, Skeleton Loaders, Chat Panels
+│   │   ├── context/     # Auth, Socket, and Theme Providers
+│   │   ├── pages/       # Dashboards, Teachers, Students, Marks, Attendance, Reports
+│   │   ├── services/    # Axios client, Apollo GraphQL client, Socket listeners
+│   │   └── index.css    # Typography, glassmorphism UI, light/dark themes
+│   ├── .env.example     # Client local environment configuration
+│   └── package.json     # Client package modules
+└── server/              # Hybrid Node.js/Express + GraphQL Server
+    ├── config/          # DB connections, Socket setup, Apollo server configuration
+    ├── controllers/     # REST request controllers
+    ├── models/          # Shared Mongoose models (MongoDB 'edutrack')
+    ├── schema/          # GraphQL typedefs and resolvers
+    ├── sockets/         # Socket event triggers and connection handlers
+    └── server.js        # Hybrid REST/GraphQL/Socket startup core
 ```
 
-Client:
+---
+
+## ⚙️ Local Setup & Run Guide
+
+### 1. Configure the Server
+Navigate to the server directory, install node modules, configure your `.env` variables, and start development:
 
 ```bash
-cd C:\Users\kasas\OneDrive\Desktop\SMS\Level-3\client
+cd Level-3/server
+copy .env.example .env
 npm install
 npm run dev
 ```
 
-Local URLs:
-
-```txt
-App:    http://localhost:5173
-Server: http://localhost:5000
-```
-
-## Product Features
-
-- Modern EduTrack branding
-- Responsive SaaS dashboard
-- Light and dark mode
-- Summary cards and academic insights
-- Student search, course filter, pagination, add/edit modal, and confirmation dialogs
-- Course cards with instructor information and progress indicators
-- Notification dropdown with unread indicators
-- Announcements and direct messages
-- Profile and activity history
-- Loading skeletons, empty states, hover states, and toast feedback
-
-## Engineering Notes
-
-The user interface avoids technical implementation wording. Under the hood, the existing server capabilities remain available for the application:
-
-- REST routes
-- GraphQL endpoint
-- Socket.io updates
-- JWT-secured requests
-- MongoDB with Mongoose models
-
-## Environment
-
-Server `.env`:
-
+#### Server environment file (`server/.env`):
 ```env
 PORT=5000
 NODE_ENV=development
-MONGO_URI=mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/edutrack
-JWT_SECRET=replace_with_a_long_random_secret
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/edutrack
+JWT_SECRET=your_long_secure_secret_key_here
 JWT_EXPIRES_IN=7d
 CLIENT_URL=http://localhost:5173
-SMTP_HOST=smtp.example.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=your_smtp_user
-SMTP_PASS=your_smtp_password
-SMTP_FROM="EduTrack <no-reply@example.com>"
 ```
 
-All three levels share the same MongoDB database name, `edutrack`. EduTrack reuses EduTrack student data and EduTrack academic/auth data, then adds announcements, notifications, activity logs, and analytics collections.
+### 2. Configure the Client
+Navigate to the client directory, install packages, establish your `.env` connection, and start Vite:
 
-Client `.env`:
-
-```env
-VITE_API_BASE_URL=http://localhost:5000/api
+```bash
+cd Level-3/client
+copy .env.example .env
+npm install
+npm run dev
 ```
 
-## Deployment
+#### Client environment file (`client/.env`):
+- **For Local Testing**:
+  ```env
+  VITE_API_BASE_URL=http://localhost:5000/api
+  ```
+- **For Production Production**:
+  ```env
+  VITE_API_BASE_URL=https://edutrack-c38t.onrender.com/api
+  ```
 
-Server:
-- Deploy `Level-3/server` to Render.
-- Build command: `npm install`
-- Start command: `npm start`
-- Add the server environment variables.
+Open your browser and navigate to `http://localhost:5173`.
 
-Client:
-- Deploy `Level-3/client` to Vercel.
-- Build command: `npm run build`
-- Output directory: `dist`
-- Set `VITE_API_BASE_URL` to your deployed server URL ending in `/api`.
+---
+
+## 🧪 Interactive Verification Guide
+
+1. **Verify Live Sync**: Open `http://localhost:5173` in two different browser windows (e.g. Chrome and Firefox) logged in under two different accounts.
+2. **Real-time Messaging**: Open `/messages` in both windows. Send a message from Account A and watch it appear instantaneously in Account B's viewport.
+3. **Modal Operation**: Navigate to the **Teachers** directory as Admin. Click **Add Teacher**. Confirm a modal overlay opens. Input details, assign sections, and click Save. The listing will update immediately in the grid without reload.
+4. **GraphQL Verification**: Navigate to `https://edutrack-c38t.onrender.com/graphql` to open the Apollo GraphQL sandbox. Run queries against student records and courses.
