@@ -21,14 +21,6 @@ const Navbar = () => {
     if (path.startsWith('/teachers')) return 'Teachers';
     if (path.startsWith('/parents')) return 'Parents';
     if (path.startsWith('/courses')) return 'Courses';
-    if (path.startsWith('/departments')) return 'Departments';
-    if (path.startsWith('/sections')) return 'Sections';
-    if (path.startsWith('/subjects')) return 'Subjects';
-    if (path.startsWith('/my-subjects')) return 'My Subjects';
-    if (path.startsWith('/my-sections')) return 'My Sections';
-    if (path.startsWith('/attendance')) return 'Attendance';
-    if (path.startsWith('/marks')) return 'Marks';
-    if (path.startsWith('/progress')) return 'Progress';
     if (path.startsWith('/announcements')) return 'Announcements';
     if (path.startsWith('/profile')) return 'Profile';
     return 'EduTrack';

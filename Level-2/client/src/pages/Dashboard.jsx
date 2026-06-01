@@ -138,6 +138,10 @@ const Dashboard = () => {
               <span>Parents</span>
               <strong>{dashboard.stats.parents}</strong>
             </article>
+            <article className="stat-card">
+              <span>Courses</span>
+              <strong>{dashboard.stats.courses || 0}</strong>
+            </article>
           </div>
           <div className="panel spaced-panel">
             <div className="panel-heading">

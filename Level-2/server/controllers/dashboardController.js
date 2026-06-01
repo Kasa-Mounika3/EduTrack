@@ -2,6 +2,7 @@ const Announcement = require('../models/Announcement');
 const Parent = require('../models/Parent');
 const Student = require('../models/Student');
 const Teacher = require('../models/Teacher');
+const Course = require('../models/Course');
 const asyncHandler = require('../utils/asyncHandler');
 const { sendSuccess } = require('../utils/apiResponse');
 
@@ -15,10 +16,11 @@ const getDashboard = asyncHandler(async (req, res) => {
     .limit(5);
 
   if (req.user.role === 'admin') {
-    const [students, teachers, parents] = await Promise.all([
+    const [students, teachers, parents, courses] = await Promise.all([
       Student.find().populate('course', 'courseName courseCode').sort({ createdAt: -1 }).limit(5),
       Teacher.countDocuments(),
-      Parent.countDocuments()
+      Parent.countDocuments(),
+      Course.countDocuments()
     ]);
 
     return sendSuccess(res, 200, 'Admin dashboard fetched successfully', {
@@ -26,7 +28,8 @@ const getDashboard = asyncHandler(async (req, res) => {
       stats: {
         students: await Student.countDocuments(),
         teachers,
-        parents
+        parents,
+        courses
       },
       recentStudents: students,
       announcements

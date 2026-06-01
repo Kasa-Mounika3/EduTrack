@@ -19,10 +19,6 @@ const Sidebar = () => {
           <NavLink to="/teachers">Teachers</NavLink>
           <NavLink to="/parents">Parents</NavLink>
           <NavLink to="/courses">Courses</NavLink>
-          <NavLink to="/departments">Departments</NavLink>
-          <NavLink to="/sections">Sections</NavLink>
-          <NavLink to="/subjects">Subjects</NavLink>
-          <NavLink to="/progress">Reports</NavLink>
           <NavLink to="/profile">Profile</NavLink>
         </>
       )}
@@ -30,12 +26,7 @@ const Sidebar = () => {
       {user.role === 'teacher' && (
         <>
           <NavLink to="/">Dashboard</NavLink>
-          <NavLink to="/my-subjects">My Subjects</NavLink>
-          <NavLink to="/my-sections">My Sections</NavLink>
           <NavLink to="/students">Students</NavLink>
-          <NavLink to="/attendance">Attendance</NavLink>
-          <NavLink to="/marks">Marks</NavLink>
-          <NavLink to="/announcements">Announcements</NavLink>
           <NavLink to="/profile">Profile</NavLink>
         </>
       )}
@@ -44,10 +35,6 @@ const Sidebar = () => {
         <>
           <NavLink to="/">Dashboard</NavLink>
           <NavLink to="/profile">My Profile</NavLink>
-          <NavLink to="/attendance">Attendance</NavLink>
-          <NavLink to="/marks">Marks</NavLink>
-          <NavLink to="/progress">Progress</NavLink>
-          <NavLink to="/announcements">Announcements</NavLink>
         </>
       )}
 
@@ -55,10 +42,7 @@ const Sidebar = () => {
         <>
           <NavLink to="/">Dashboard</NavLink>
           <NavLink to="/students">Child Profile</NavLink>
-          <NavLink to="/attendance">Attendance</NavLink>
-          <NavLink to="/marks">Marks</NavLink>
-          <NavLink to="/progress">Progress</NavLink>
-          <NavLink to="/announcements">Announcements</NavLink>
+          <NavLink to="/profile">Profile</NavLink>
         </>
       )}
 

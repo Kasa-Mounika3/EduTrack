@@ -13,16 +13,8 @@ import StudentDetails from './pages/StudentDetails.jsx';
 import TeachersPage from './pages/TeachersPage.jsx';
 import Login from './pages/Login.jsx';
 import NotFound from './pages/NotFound.jsx';
-import Profile from './pages/Profile.jsx';
 import Register from './pages/Register.jsx';
-import Departments from './pages/Departments.jsx';
-import Sections from './pages/Sections.jsx';
-import Subjects from './pages/Subjects.jsx';
-import MySubjects from './pages/MySubjects.jsx';
-import MySections from './pages/MySections.jsx';
-import Attendance from './pages/Attendance.jsx';
-import Marks from './pages/Marks.jsx';
-import Progress from './pages/Progress.jsx';
+import Profile from './pages/Profile.jsx';
 import { useAuth } from './hooks/useAuth.js';
 
 const App = () => {
@@ -117,70 +109,7 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/departments"
-              element={
-                <ProtectedRoute allowedRoles={['admin']}>
-                  <Departments />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/sections"
-              element={
-                <ProtectedRoute allowedRoles={['admin']}>
-                  <Sections />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/subjects"
-              element={
-                <ProtectedRoute allowedRoles={['admin']}>
-                  <Subjects />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/my-subjects"
-              element={
-                <ProtectedRoute allowedRoles={['teacher']}>
-                  <MySubjects />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/my-sections"
-              element={
-                <ProtectedRoute allowedRoles={['teacher']}>
-                  <MySections />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/attendance"
-              element={
-                <ProtectedRoute>
-                  <Attendance />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/marks"
-              element={
-                <ProtectedRoute>
-                  <Marks />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/progress"
-              element={
-                <ProtectedRoute>
-                  <Progress />
-                </ProtectedRoute>
-              }
-            />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

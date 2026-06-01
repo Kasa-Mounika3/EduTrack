@@ -12,8 +12,6 @@ const emptyForm = {
   dateOfBirth: '',
   email: '',
   course: '',
-  departmentId: '',
-  sectionId: '',
   age: '',
   phone: '',
   address: '',
@@ -52,22 +50,13 @@ const StudentForm = ({
     dateOfBirth: initialValues.dateOfBirth ? new Date(initialValues.dateOfBirth).toISOString().slice(0, 10) : '',
     admissionDate: initialValues.admissionDate ? new Date(initialValues.admissionDate).toISOString().slice(0, 10) : '',
     course: getCourseId(initialValues.course),
-    departmentId: getCourseId(initialValues.departmentId),
-    sectionId: getCourseId(initialValues.sectionId),
     age: initialValues.age || '',
     password: ''
   });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
-  const [academic, setAcademic] = useState({ departments: [], sections: [] });
   const [photoFile, setPhotoFile] = useState(null);
   const [photoPreview, setPhotoPreview] = useState(resolveAssetUrl(initialValues.profilePhoto || ''));
-
-  useEffect(() => {
-    apiClient.get('/academic')
-      .then((response) => setAcademic(response.data.data || { departments: [], sections: [] }))
-      .catch(() => setAcademic({ departments: [], sections: [] }));
-  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -134,8 +123,6 @@ const StudentForm = ({
         email: formData.email.trim(),
         course: formData.course,
         courseId: formData.course,
-        departmentId: formData.departmentId || undefined,
-        sectionId: formData.sectionId || undefined,
         age: formData.age ? Number(formData.age) : undefined,
         phone: formData.phone.trim(),
         address: formData.address.trim(),
@@ -245,27 +232,6 @@ const StudentForm = ({
           {errors.course && <small>{errors.course}</small>}
         </label>
 
-        <label>
-          <span>Department</span>
-          <select name="departmentId" value={formData.departmentId} onChange={handleChange}>
-            <option value="">Select a department</option>
-            {academic.departments.map((department) => (
-              <option key={department._id} value={department._id}>{department.departmentName}</option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          <span>Section</span>
-          <select name="sectionId" value={formData.sectionId} onChange={handleChange}>
-            <option value="">Select a section</option>
-            {academic.sections
-              .filter((section) => !formData.departmentId || section.department?._id === formData.departmentId || section.department === formData.departmentId)
-              .map((section) => (
-                <option key={section._id} value={section._id}>{section.year} - Section {section.sectionName}</option>
-              ))}
-          </select>
-        </label>
 
         <label>
           <span>Age</span>
